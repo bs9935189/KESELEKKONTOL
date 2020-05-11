@@ -52,7 +52,7 @@ async def set_afk(afk_e):
     if string:
         AFKREASON = string
         await afk_e.edit(f"**OPLEN SEK SLUR!**\
-        \nAlesan e: `{string}`")
+        \nALESAN : `{string}`")
     else:
         await afk_e.edit("**OPLEN SEK SLUR!**")
     if BOTLOG:
@@ -62,7 +62,7 @@ async def set_afk(afk_e):
     raise StopPropagation
 
 
-@register(outgoing=True, pattern="^.onlen(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern="^.p(?: |$)(.*)", disable_errors=True)
 async def type_afk_is_not_true(notafk):
     """ This sets your status as not afk automatically when you write something while being afk """
     global ISAFK
@@ -143,8 +143,8 @@ async def mention_afk(mention):
                 afk_since = f"`{int(seconds)}s` ago"
             if mention.sender_id not in USERS:
                 if AFKREASON:
-                    await mention.reply(f"**Aku Lagi Offline Bos.** (Since **{afk_since}**).\
-                        \nAlesan e: `{AFKREASON}`")
+                    await mention.reply(f"**OPLEN SEK BOS!** (Since **{afk_since}**).\
+                        \nALESAN : `{AFKREASON}`")
                 else:
                     await mention.reply(str(choice(AFKSTR)))
                 USERS.update({mention.sender_id: 1})
@@ -153,7 +153,7 @@ async def mention_afk(mention):
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
                         await mention.reply(f"**I'm still not available right now.** (Since **{afk_since}**).\
-                            \nAlesan e: `{AFKREASON}`")
+                            \nALESAN : `{AFKREASON}`")
                     else:
                         await mention.reply(str(choice(AFKSTR)))
                     USERS[mention.sender_id] = USERS[mention.sender_id] + 1
@@ -220,7 +220,7 @@ async def afk_on_pm(sender):
             if sender.sender_id not in USERS:
                 if AFKREASON:
                     await sender.reply(f"**Aku Lagi Offline Bos.** (Since **{afk_since}**).\
-                        \nAlesan e: `{AFKREASON}`")
+                        \nALESAN : `{AFKREASON}`")
                 else:
                     await sender.reply(str(choice(AFKSTR)))
                 USERS.update({sender.sender_id: 1})
@@ -229,7 +229,7 @@ async def afk_on_pm(sender):
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
                         await sender.reply(f"**I'm still not available right now.** (Since **{afk_since}**).\
-                            \nAlesan e: `{AFKREASON}`")
+                            \nALESAN : `{AFKREASON}`")
                     else:
                         await sender.reply(str(choice(AFKSTR)))
                     USERS[sender.sender_id] = USERS[sender.sender_id] + 1
@@ -243,7 +243,7 @@ CMD_HELP.update({
     "afk":
     ".oplen [Optional Reason]\
 \nUsage: Sets you as afk.\nReplies to anyone who tags/PM's you telling them that you are AFK(reason).\
-\n\n.onlen\
+\n\n.p\
 \nUsage: Back from afk state\
 "
 })
